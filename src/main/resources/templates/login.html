@@ -9,10 +9,14 @@
 <body>
     <span th:text="${msg}"> </span>
     <form action="/login">
-        <input name="name" placeholder="输入用户名">
-        <input name="password" placeholder="输入密码">
+        <input name="name" placeholder="输入用户名" /><br/>
+        <input name="password" placeholder="输入密码" /><br/>
+       <!-- <img src="/getKaptcha" onclick="this.src='/getKaptcha?d='+new Date()" />-->
+        <input name="code" placeholder="输入验证码"/><br/>
+        <input type="checkbox" name="remember" value="1" />
         <button type="submit">提交</button>
     </form>
+        <img src="/getKaptcha" onclick="this.src='/getKaptcha?d='+new Date()" />
 
 </body>
 </html>

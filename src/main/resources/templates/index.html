@@ -1,14 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-这是index页面
-
-<a href="/product/add" ><span style="color: red">去添加(role2无法访问)</span></a>
+这是index页面,当前用户名<span th:text="${session.userName}"></span><br/>
+<a href="/logout">注销</a>
+<span shiro:hasPermission="product:add">
+<a href="/product/add" ><span style="color: red">去添加(role2无法访问)</span></a><br/>
+</span>
 <a href="/product/update">去修改</a>
-<a href="/product/list">去列表</a>
+<a href="/product/list">去列表</a><br/>
+<span th:text="${passwordMsg}"></span>
+<form action="/editPassword">
+    <input name="password" placeholder="输入新密码">
+    <input type="hidden" name="id" th:value="${session.id}" >
+    <button type="submit">修改密码</button>
+</form>
 </body>
 </html>

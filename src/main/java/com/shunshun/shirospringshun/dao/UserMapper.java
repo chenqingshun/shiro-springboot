@@ -3,6 +3,7 @@ package com.shunshun.shirospringshun.dao;
 import com.shunshun.shirospringshun.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -14,4 +15,7 @@ public interface UserMapper {
 
     @Select("SELECT p.permission FROM t_user u INNER JOIN t_user_role ur ON u.id=ur.user_id INNER JOIN t_role_permission rp ON ur.role_id=rp.role_id INNER JOIN t_permission p ON rp.permission_id=p.id WHERE u.id =#{id}")
     public List<String> findPermissionById(Integer id);
+
+    @Update("update t_user set password =#{password} where id=#{id}")
+     public Integer editPassword(User user);
 }
